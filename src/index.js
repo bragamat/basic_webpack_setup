@@ -2,10 +2,24 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
+import App from './app'
 
-import Title from './app'
+const renderApp = (NextApp) => {
+    ReactDOM.render(
+        <AppContainer>
+            <NextApp />
+        </AppContainer>,
+        document.querySelector('[data-js="app"]')
+    )
+}
 
-ReactDOM.render(
-    <Title />,
-    document.querySelector('[data-js="app"]')
-)
+renderApp(App)
+
+/*Setup to use hotloader only in dev*/
+if(module.hot){
+  module.hot.accept('./app', ()=>{
+      const NextApp = require('./app').default
+        renderApp(NextApp)
+  })
+}
