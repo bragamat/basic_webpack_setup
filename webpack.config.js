@@ -21,12 +21,15 @@ module.exports = {
   ],
   module:{
     rules:[{
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         include: /src/,
         use:[{
             loader: 'babel-loader'
         }]
     }]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
   }
 }
